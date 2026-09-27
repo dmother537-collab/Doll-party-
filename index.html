@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Girl Party World - Real Fashion Star</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff1493">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Fredoka',sans-serif;background:#1a0a1f;color:white;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+.topbar{height:56px;background:linear-gradient(90deg,#ff1493,#8a2be2);display:flex;align-items:center;justify-content:space-between;padding:0 14px;box-shadow:0 4px 20px rgba(255,20,147,0.4);z-index:10}
+.topbar h1{font-size:18px;letter-spacing:0.5px}
+.coins{background:rgba(0,0,0,0.3);padding:6px 12px;border-radius:20px;font-size:14px}
+.main{flex:1;display:flex;overflow:hidden}
+.stage{flex:1.3;background:radial-gradient(circle at 50% 30%, #2d1b3a 0%, #1a0a1f 70%);position:relative;display:flex;align-items:center;justify-content:center}
+.stage-bg{position:absolute;inset:0;opacity:0.15;background:url('https://img.freepik.com/free-vector/gradient-pink-background_23-2149589314.jpg');background-size:cover}
+.avatar-wrap{position:relative;width:300px;height:520px;filter:drop-shadow(0 20px 30px rgba(0,0,0,0.5));transform:scale(0.95)}
+#avatarSvg{width:100%;height:100%}
+.danceAnim{animation:dance 0.45s infinite alternate cubic-bezier(.68,-0.55,.27,1.55)}
+@keyframes dance{0%{transform:translateY(0) rotate(-3deg) scale(1)}100%{transform:translateY(-10px) rotate(3deg) scale(1.03)}}
+.panel{width:330px;background:#241332;border-left:1px solid #3a2150;display:flex;flex-direction:column}
+.tabs{display:flex;gap:6px;padding:10px;background:#1e0f2d;overflow-x:auto}
+.tabs button{white-space:nowrap;padding:8px 12px;border-radius:20px;border:1px solid #4a2a6a;background:#2e1846;color:#d9b3ff;font-size:12px;font-weight:600}
+.tabs button.active{background:linear-gradient(90deg,#ff1493,#ff6b9d);color:white;border-color:transparent;box-shadow:0 4px 12px rgba(255,20,147,0.5)}
+.content{flex:1;overflow-y:auto;padding:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.card{background:#2e1846;border:2px solid #3e2a5a;border-radius:14px;padding:6px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:.2s}
+.card:active{transform:scale(0.92)}
+.card.sel{border-color:#ff1493;background:#4a1a3a;box-shadow:0 0 0 3px rgba(255,20,147,0.3)}
+.card.color-dot{position:absolute;bottom:4px;right:4px;width:12px;height:12px;border-radius:50%;border:2px solid white}
+.color-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.color-row span{width:28px;height:28px;border-radius:50%;border:2px solid white;display:block;cursor:pointer}
+.action-bar{display:flex;gap:8px;padding:10px;background:#1e0f2d}
+.action-bar button{flex:1;padding:12px;border:none;border-radius:14px;font-weight:700;font-size:13px}
+.btn-party{background:linear-gradient(90deg,#ff1493,#ff8a00);color:white;box-shadow:0 6px 16px rgba(255,20,147,0.4)}
+.btn-rand{background:#2e1846;color:#ff8ac6;border:1px solid #4a2a6a}
+</style>
+</head>
+<body>
+<div class="topbar"><h1>👑 GIRL PARTY WORLD</h1><div class="coins">💎 9999</div></div>
+<div class="main">
+<div class="stage">
+<div class="stage-bg"></div>
+<div class="avatar-wrap" id="avatarWrap">
+<svg id="avatarSvg" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+<!-- shadow -->
+<ellipse cx="100" cy="390" rx="45" ry="8" fill="rgba(0,0,0,0.3)"/>
+<!-- legs -->
+<g id="skinLegs"><path d="M75 260 L70 380 Q70 390 80 390 L85 390 L95 270 Z M125 260 L130 380 Q130 390 120 390 L115 390 L105 270 Z" fill="#f9c9a3"/></g>
+<!-- shoes -->
+<g id="shoesGroup"><path id="shoeL" d="M70 370 Q65 385 80 390 L85 385 L85 370 Z" fill="#ff1493"/><path id="shoeR" d="M130 370 Q135 385 120 390 L115 385 L115 370 Z" fill="#ff1493"/></g>
+<!-- dress -->
+<g id="dressGroup"><path id="dressPath" d="M65 140 Q100 120 135 140 L145 280 Q100 295 55 280 Z" fill="#ff4da6"/></g>
+<!-- body -->
+<g id="skinBody"><path d="M75 135 Q100 125 125 135 L120 210 Q100 220 80 210 Z" fill="#f9c9a3"/></g>
+<!-- arms -->
+<g id="skinArms"><path d="M75 140 Q55 170 60 210" stroke="#f9c9a3" stroke-width="14" stroke-linecap="round" fill="none"/><path d="M125 140 Q145 170 140 210" stroke="#f9c9a3" stroke-width="14" stroke-linecap="round" fill="none"/></g>
+<!-- head -->
+<g id="skinHead"><circle cx="100" cy="95" r="48" fill="#f9c9a3"/><ellipse cx="100" cy="115" rx="18" ry="10" fill="#f9c9a3"/></g>
+<!-- makeup blush -->
+<g id="blushGroup" opacity="0.5"><circle id="blushL" cx="75" cy="105" r="8" fill="#ff6b9d"/><circle id="blushR" cx="125" cy="105" r="8" fill="#ff6b9d"/></g>
+<!-- eyes -->
+<g id="eyes"><circle cx="85" cy="92" r="6" fill="white"/><circle cx="115" cy="92" r="6" fill="white"/><circle cx="86" cy="93" r="3.5" fill="#3a2150"/><circle cx="116" cy="93" r="3.5" fill="#3a2150"/><circle cx="87" cy="92" r="1.5" fill="white"/><circle cx="117" cy="92" r="1.5" fill="white"/></g>
+<!-- lips -->
+<path id="lips" d="M92 120 Q100 126 108 120 Q100 122 92 120" fill="#cc0044"/>
+<!-- hair back -->
+<path id="hairBack" d="M52 80 Q100 20 148 80 Q148 110 140 120 Q100 40 60 120 Z" fill="#2b1b0e"/>
+<!-- hair front -->
+<path id="hairFront" d="M52 75 Q100 35 148 75 Q148 85 140 85 Q100 45 60 85 Z" fill="#2b1b0e"/>
+<!-- crown -->
+<g id="crownGroup"><text x="100" y="48" text-anchor="middle" font-size="28" id="crownEmoji"></text></g>
+</svg>
+</div>
+</div>
+<div class="panel">
+<div class="tabs">
+<button class="active" onclick="setTab('skin',this)">Skin</button>
+<button onclick="setTab('hair',this)">Hair</button>
+<button onclick="setTab('dress',this)">Dress</button>
+<button onclick="setTab('shoes',this)">Shoes</button>
+<button onclick="setTab('makeup',this)">Makeup</button>
+<button onclick="setTab('crown',this)">Crown</button>
+</div>
+<div class="content">
+<div id="colorBar" class="color-row"></div>
+<div class="grid" id="grid"></div>
+</div>
+<div class="action-bar">
+<button class="btn-rand" onclick="randomFull()">🎲 RANDOM</button>
+<button class="btn-party" onclick="partyMode()">🎉 RUNWAY</button>
+</div>
+</div>
+</div>
+
+<script>
+const skins=["#f9c9a3","#e8b48a","#d99a6a","#a86a42","#f7d7d0"];
+const hairColors=["#2b1b0e","#5a2e0a","#ffd700","#ff6b9d","#8a2be2","#00e5ff","#ff1493"];
+const dressColors=["#ff4da6","#8a2be2","#00e5ff","#ff8a00","#00ff88","#ff0000","#ffffff","#000000"];
+const makeupColors=["#cc0044","#ff1493","#ff6b9d","#8a2be2","#ff0000","#990011"];
+const hairStyles=[
+{back:"M52 80 Q100 20 148 80 Q148 110 140 120 Q100 40 60 120 Z", front:"M52 75 Q100 35 148 75 Q148 85 140 85 Q100 45 60 85 Z"},
+{back:"M40 70 Q100 10 160 70 Q160 140 150 150 Q100 30 50 150 Z", front:"M40 65 Q100 25 160 65 Q150 75 140 75 Q100 35 60 75 Z"},
+{back:"M52 60 Q100 15 148 60 Q155 130 145 160 Q100 100 55 160 Q45 130 52 60 Z", front:"M52 60 Q100 30 148 60 Q135 70 120 68 Q100 38 80 68 Q65 70 52 60 Z"},
+{back:"M30 90 Q100 20 170 90 Q170 180 160 200 Q100 120 40 200 Q30 180 30 90 Z", front:"M45 70 Q100 30 155 70 Q145 80 100 80 Q55 80 45 70 Z"},
+{back:"M52 80 Q100 20 148 80 Q160 100 155 180 Q145 190 135 180 Q100 60 65 180 Q55 190 45 180 Q40 100 52 80 Z", front:"M52 75 Q100 35 148 75 Q140 82 100 82 Q60 82 52 75 Z"},
+{back:"M50 80 Q100 20 150 80 Q150 90 145 95 Q100 40 55 95 Q50 90 50 80 Z", front:"M50 75 Q100 55 150 75 Q100 85 50 75 Z"}
+];
+const dressStyles=[
+"M65 140 Q100 120 135 140 L145 280 Q100 295 55 280 Z",
+"M70 135 L130 135 L140 260 L60 260 Z",
+"M65 140 Q100 160 135 140 L150 270 Q100 285 50 270 Z",
+"M80 135 Q100 130 120 135 L125 220 Q100 230 75 220 Z",
+"M65 140 Q100 120 135 140 L135 200 L65 200 Z",
+"M65 135 Q100 125 135 135 L160 280 Q100 300 40 280 Z",
+"M75 135 L125 135 L130 280 L70 280 Z",
+"M65 140 Q100 150 135 140 Q145 200 135 280 Q100 290 65 280 Q55 200 65 140 Z"
+];
+const shoesColors=["#ff1493","#000","#fff","#8a2be2","#ff8a00","#00e5ff"];
+const crowns=["","👑","🎀","💎","👸","👒","🎀","✨"];
+
+let state={skin:0,hairStyle:0,hairColor:0,dressStyle:0,dressColor:0,shoeColor:0,makeup:0,crown:0};
+let currentTab='skin';
+
+function setTab(t,btn){
+currentTab=t;
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+render();
+}
+function render(){
+const grid=document.getElementById('grid');
+const colorBar=document.getElementById('colorBar');
+grid.innerHTML=''; colorBar.innerHTML='';
+if(currentTab==='skin'){
+skins.forEach((c,i)=>{colorBar.innerHTML+=`<span style="background:${c}" onclick="setState('skin',${i})"></span>`});
+grid.innerHTML=`<div style="grid-column:span 4;text-align:center;color:#a080c0;padding:20px">Choose skin tone above 👆</div>`;
+} else if(currentTab==='hair'){
+hairColors.forEach((c,i)=>{colorBar.innerHTML+=`<span style="background:${c}" onclick="setState('hairColor',${i})"></span>`});
+hairStyles.forEach((h,i)=>{
+let d=document.createElement('div'); d.className='card'+(state.hairStyle===i?' sel':'');
+d.innerHTML=`<svg viewBox="0 0 100 40"><path d="${h.front}" fill="${hairColors[state.hairColor]}"/></svg>`;
+d.onclick=()=>setState('hairStyle',i); grid.appendChild(d);
+});
+} else if(currentTab==='dress'){
+dressColors.forEach((c,i)=>{colorBar.innerHTML+=`<span style="background:${c}" onclick="setState('dressColor',${i})"></span>`});
+dressStyles.forEach((p,i)=>{
+let d=document.createElement('div'); d.className='card'+(state.dressStyle===i?' sel':'');
+d.innerHTML=`<svg viewBox="0 0 100 100"><path d="${p}" fill="${dressColors[state.dressColor]}"/></svg>`;
+d.onclick=()=>setState('dressStyle',i); grid.appendChild(d);
+});
+} else if(currentTab==='shoes'){
+shoesColors.forEach((c,i)=>{colorBar.innerHTML+=`<span style="background:${c};border:2px solid white" onclick="setState('shoeColor',${i})"></span>`});
+["👠","👡","👢","🥿","👟","🩰","👠","👡"].forEach((e,i)=>{
+let d=document.createElement('div'); d.className='card'; d.innerText=e; d.onclick=()=>setState('shoeColor',i%shoesColors.length); grid.appendChild(d);
+});
+} else if(currentTab==='makeup'){
+makeupColors.forEach((c,i)=>{colorBar.innerHTML+=`<span style="background:${c}" onclick="setState('makeup',${i})"></span>`});
+grid.innerHTML=`<div style="grid-column:span 4;color:#d9b3ff">💄 Lipstick<br>😊 Blush auto</div>`;
+} else if(currentTab==='crown'){
+crowns.forEach((c,i)=>{
+let d=document.createElement('div'); d.className='card'+(state.crown===i?' sel':''); d.innerText=c||'❌'; d.onclick=()=>setState('crown',i); grid.appendChild(d);
+});
+}
+updateAvatar();
+}
+function setState(k,v){state[k]=v; render();}
+function updateAvatar(){
+document.getElementById('skinLegs').querySelectorAll('path').forEach(p=>p.setAttribute('fill',skins[state.skin]));
+document.querySelector('#skinBody path').setAttribute('fill',skins[state.skin]);
+document.querySelectorAll('#skinArms path').forEach(p=>p.setAttribute('stroke',skins[state.skin]));
+document.querySelector('#skinHead circle').setAttribute('fill',skins[state.skin]);
+document.querySelector('#skinHead ellipse').setAttribute('fill',skins[state.skin]);
+document.getElementById('hairBack').setAttribute('d',hairStyles[state.hairStyle].back);
+document.getElementById('hairFront').setAttribute('d',hairStyles[state.hairStyle].front);
+document.getElementById('hairBack').setAttribute('fill',hairColors[state.hairColor]);
+document.getElementById('hairFront').setAttribute('fill',hairColors[state.hairColor]);
+document.getElementById('dressPath').setAttribute('d',dressStyles[state.dressStyle]);
+document.getElementById('dressPath').setAttribute('fill',dressColors[state.dressColor]);
+document.getElementById('shoeL').setAttribute('fill',shoesColors[state.shoeColor]);
+document.getElementById('shoeR').setAttribute('fill',shoesColors[state.shoeColor]);
+document.getElementById('lips').setAttribute('fill',makeupColors[state.makeup]);
+document.getElementById('crownEmoji').textContent=crowns[state.crown];
+}
+function partyMode(){
+let w=document.getElementById('avatarWrap');
+w.classList.add('danceAnim');
+document.querySelector('.stage-bg').style.opacity='0.4';
+setTimeout(()=>{w.classList.remove('danceAnim');document.querySelector('.stage-bg').style.opacity='0.15'},4000);
+}
+function randomFull(){
+state={skin:Math.floor(Math.random()*skins.length),hairStyle:Math.floor(Math.random()*hairStyles.length),hairColor:Math.floor(Math.random()*hairColors.length),dressStyle:Math.floor(Math.random()*dressStyles.length),dressColor:Math.floor(Math.random()*dressColors.length),shoeColor:Math.floor(Math.random()*shoesColors.length),makeup:Math.floor(Math.random()*makeupColors.length),crown:Math.floor(Math.random()*crowns.length)};
+render(); partyMode();
+}
+render();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
